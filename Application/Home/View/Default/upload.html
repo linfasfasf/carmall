@@ -209,12 +209,16 @@
                 <div class="m-body">
                     <div class="m-header"><h3 title="产品展示">产品详情</h3></div>
                                 
-                            <form action="__URL__/upload" enctype="multipart/form-data" method="post">
+                            <form action="__URL__/upload_file" enctype="multipart/form-data" method="post">
                                 <for start="0" end="$file_num"> 
-                                <input type="file" name="pic[]"><br><hr><br>
+                                <input type="file" name="pic{$i}"><br><hr><br>
                                 </for>
                                 <br>
-                                <input type="submit" value="提交">
+                                
+                                <!-- 加载编辑器的容器 -->
+                                <script id="container" name="content" type="text/plain">产品简介</script>
+
+                                <input type="submit" value="提交"><br>
                             </form>
 
                             <a href="__URL__/upload?file_num={$file_num+1}"><input type="button" value="添加上传文件" ></a><br>
@@ -227,11 +231,18 @@
                 <div class="m-body">
                     <div class="m-header"><h3 title="产品简介">产品简介</h3></div>
                     <div class="m-content">
-                        <empty name="script">
-                            <div class="no-content"><p>暂无简介</p></div>
-                            <else />
-                             {$script}
-                        </empty>
+                         
+                            
+                            <!-- 配置文件 -->
+                            <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+                            <!-- 编辑器源码文件 -->
+                            <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
+                            <!-- 实例化编辑器 -->
+                            <script type="text/javascript">
+                                var ue = UE.getEditor('container');
+                            </script>
+
+
                     </div>
                 </div>
             </div>

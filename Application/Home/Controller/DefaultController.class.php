@@ -41,20 +41,42 @@ class DefaultController extends Controller {
     }
 
     public function upload_file(){
+        $title       = I('content');
+        $title  = substr($title, 9,-10);
+        // $title  = substr($title, 0,-9);
+        var_dump($title);
+        die();
         $upload  = new \Think\Upload();
+        $pic_info = M('pic_info');
+        $product_info_model = M('product_info');
         $product_id = $this->get_product_id();
-        $upload->maxSize   = 3145728 ;
+        $upload->maxSize   = 0 ;
         $upload->exts      = array('jpg', 'gif', 'png', 'jpeg');
-        $upload->rootPath  = './Uploads/';
-        $upload->savePath  = $product_id;
-        $upload->saveName  = 'time';
+        $upload->rootPath  = './Uploads/product/';
+        $upload->savePath  = $product_id.'/';
+        // $upload->saveName  = 'time().'_'.mt_rand()';
+        $upload->autoSub   = false;
         //上传文件
         $info  = $upload->upload();
         if (!$info) {
             $this->error($upload->getError());
         }else{
-            
+            foreach ($info as $key => $file) {
+              
+                $data['product_id'] = $product_id;
+                $data['pic_name']   = $file['savename'];
+                if ($key == 'pic0') {
+                    $data['default'] =1;
+                }else{
+                    $data['default'] = 0;
+                }
+                $pic_info->add($data);
+            }
         }
+        $info['title'] = $title;
+        $info['product_id'] =$product_id;
+        $product_info_model->add($info);
+        $this->redirect('upload');
     }
 
     private function get_product_id(){
