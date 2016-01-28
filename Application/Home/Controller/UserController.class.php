@@ -8,7 +8,64 @@ class UserController extends Controller{
     }
     
     public function index(){
-        $this->display('Index/login');
+        $this->display('Default/login');
+    }
+
+
+
+    public function upload(){
+        $num = I('get.file_num');
+        $num = is_numeric($num)?$num:4;
+
+        $this->assign('file_num',$num);
+        $this->display('default/upload');
+    }
+
+    public function upload_file(){
+        $title     = I('title');
+        $content   = I('content');
+        $upload  = new \Think\Upload();
+        $pic_info = M('pic_info');
+        $product_info_model = M('product_info');
+        $product_id = $this->get_product_id();
+        $upload->maxSize   = 0 ;
+        $upload->exts      = array('jpg', 'gif', 'png', 'jpeg');
+        $upload->rootPath  = './Uploads/product/';
+        $upload->savePath  = $product_id.'/';
+        // $upload->saveName  = 'time().'_'.mt_rand()';
+        $upload->autoSub   = false;
+        //上传文件
+        $info  = $upload->upload();
+        if (!$info) {
+            $this->error($upload->getError());
+        }else{
+            foreach ($info as $key => $file) {
+              
+                $data['product_id'] = $product_id;
+                $data['pic_name']   = $file['savename'];
+                if ($key == 'pic0') {
+                    $data['default'] =1;
+                }else{
+                    $data['default'] = 0;
+                }
+                $pic_info->add($data);
+            }
+        }
+        $info['title'] = $title;
+        $info['content'] = $content;
+        $info['product_id'] =$product_id;
+        $product_info_model->add($info);
+        $this->success('上传成功','/Home/default/show_product?product_id='.$product_id);
+    }
+
+    private function get_product_id(){
+        while(strlen($product_id = intval(creat_rand_str(6,'numeric'))) != 6);
+        $product_info_model = M('product_info');
+        $product_info  = $product_info_model->where('product_id = %d',$product_id)->select();
+        if(!empty($product_info)){
+            $product_id = $this->get_product_id();
+        }
+        return $product_id;
     }
     
     /*

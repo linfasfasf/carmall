@@ -134,11 +134,7 @@
                                         <a href="/product/t123290.html" title="引擎检测工具">引擎检测工具</a>
                                     </div>
                                 </li>
-                                <li class="expand">
-                                    <div class="side-sort-parent">
-                                        <a href="/product/t123291.html" title="轮胎护理工具">轮胎护理工具</a>
-                                    </div>
-                                </li>
+                                
 
 
                             </ul>
@@ -187,82 +183,38 @@
         <!--左边主题板块结束-->
         <!-- 右面主题板块-->
         <div class="main-wrap fr">
-            <!--公司介绍-->
-            <div class="mod mod-prointro">
-                <div class="m-body">
-                    <div class="m-header"><h3 title="公司介绍">公司介绍</h3></div>
-                    <div class="m-content">
-                        <div class="com-intro clf">
-                            <div class="info-word">
-                                <p class="para-one">
-                                    厦门睿智达有限公司是从事汽车保修工具的研制开发和生产,集科、工、贸为一体的规模型企业，公司所在地处全国五金制造业最发达的福建省厦门市。公司本着“诚信经营，互惠互利”的经营宗旨及“以人为本”的企业经营理念，面对全球机遇挑战，公司原愿与国内外商家精诚合作，共同发展。
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--公司介绍结束-->
+            
 
             <!--最新产品-->
             <div class="mod mod-starpro">
                 <div class="m-body">
-                    <div class="m-header"><h3 title="产品展示">产品详情</h3></div>
+                    <div class="m-header"><h3 title="产品展示">上传详情</h3></div>
                                 
                             <form action="__URL__/upload_file" enctype="multipart/form-data" method="post">
                                 <for start="0" end="$file_num"> 
                                 <input type="file" name="pic{$i}"><br><hr><br>
                                 </for>
                                 <br>
+                                <hr>
+                                商品标题<br><textarea  name="title" cols="50" rows="4"></textarea><br><hr><br>
                                 
                                 <!-- 加载编辑器的容器 -->
-                                <script id="container" name="content" type="text/plain">产品简介</script>
-
+                                商品描述<br>
+                                 
+                                <textarea  name="content" cols="80" rows="6"></textarea><br><hr><br>
                                 <input type="submit" value="提交"><br>
                             </form>
 
-                            <a href="__URL__/upload?file_num={$file_num+1}"><input type="button" value="添加上传文件" ></a><br>
+                            <a href="__URL__/upload?file_num={$file_num+1}"><input type="button" value="添加上传文件数量" ></a><br>
                                                                    
                 </div>
             </div>
             
             
-            <div class="mod mod-pronews">
-                <div class="m-body">
-                    <div class="m-header"><h3 title="产品简介">产品简介</h3></div>
-                    <div class="m-content">
-                         
-                            
-                            <!-- 配置文件 -->
-                            <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
-                            <!-- 编辑器源码文件 -->
-                            <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.js"></script>
-                            <!-- 实例化编辑器 -->
-                            <script type="text/javascript">
-                                var ue = UE.getEditor('container');
-                            </script>
-
-
-                    </div>
-                </div>
-            </div>
+           
             
             
-            <div class="mod mod-contact">
-                <div class="m-body">
-                    <div class="m-header"><h3 title="图片信息">图片信息</h3></div>
-                    <div class="m-content">
-                        <div>
-                            <foreach name='pic_info' item='vo'>
-                        <img  src="__PUBLIC__/images/{$vo.product_id}/{$vo.pic_name}" alt="供应羊毛球、海棉球"><br>
-
-                            </foreach>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--联系方式结束-->
-        </div>
+            
         <!-- 右面主题板块结束-->
     </div>
 
@@ -320,14 +272,7 @@
     </div>
     <!--商铺底部结束-->
 </div><!--//id="page-wrapper"-->
-<!--声明-->
-<div id="statement">
-    <div class="state-wrap">
-        <i></i>
-        <p>免责声明：以上所展示的信息由企业自行提供，内容的真实性、准确性和合法性由发布企业负责。世界工厂网对此不承担任何保证责任。</p>
-    </div>
-</div>
-<!--声明结束-->
+
 
 <div id="mqrcode">
     <div class="qrcode-img" data-qr="http://m.gongchang.com/shop/heshitools/"></div>
