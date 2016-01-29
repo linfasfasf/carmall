@@ -129,16 +129,13 @@
                     <div class="m-content">
                         <div class="proclass-list">
                             <ul>
+                                <foreach name="group" item="group_id">
                                 <li class="expand">
                                     <div class="side-sort-parent">
-                                        <a href="/product/t123290.html" title="引擎检测工具">引擎检测工具</a>
+                                        <a href="" title="">{$group_id.group_name}</a>
                                     </div>
                                 </li>
-                                <li class="expand">
-                                    <div class="side-sort-parent">
-                                        <a href="/product/t123291.html" title="轮胎护理工具">轮胎护理工具</a>
-                                    </div>
-                                </li>
+                                </foreach>
 
 
                             </ul>

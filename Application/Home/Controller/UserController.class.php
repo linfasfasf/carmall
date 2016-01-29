@@ -5,18 +5,33 @@ class UserController extends Controller{
     
     public function __construct() {
         parent::__construct();
+        
     }
     
     public function index(){
         $this->display('Default/login');
     }
 
+    public function creat_group(){
+        $group_name = I('post.group_name','','htmlspecialchars');
+        $group_id  =  $this->get_uniqid_id('group_info',4);
+        $group_model = M('group_info');
+        $data['group_id'] = $group_id;
+        $data['group_name'] = $group_name;
+        if ($group_model->add($data)) {
+            $this->success('新增分组成功!');
+        }else{
+            $this->error('新增分组失败!');
+        }
 
+    }
 
     public function upload(){
         $num = I('get.file_num');
         $num = is_numeric($num)?$num:4;
-
+        $group_model = M('group_info');
+        $result = $group_model->select();
+        $this->assign('group',$result);
         $this->assign('file_num',$num);
         $this->display('default/upload');
     }
@@ -24,10 +39,11 @@ class UserController extends Controller{
     public function upload_file(){
         $title     = I('title');
         $content   = I('content');
+        $group_id  = I('group');
         $upload  = new \Think\Upload();
         $pic_info = M('pic_info');
         $product_info_model = M('product_info');
-        $product_id = $this->get_product_id();
+        $product_id = $this->get_uniqid_id('product_info');
         $upload->maxSize   = 0 ;
         $upload->exts      = array('jpg', 'gif', 'png', 'jpeg');
         $upload->rootPath  = './Uploads/product/';
@@ -40,7 +56,7 @@ class UserController extends Controller{
             $this->error($upload->getError());
         }else{
             foreach ($info as $key => $file) {
-              
+                $file = img_check('/Uploads/product/'.$product_id.'/'.$file['savename']);
                 $data['product_id'] = $product_id;
                 $data['pic_name']   = $file['savename'];
                 if ($key == 'pic0') {
@@ -51,23 +67,47 @@ class UserController extends Controller{
                 $pic_info->add($data);
             }
         }
-        $info['title'] = $title;
-        $info['content'] = $content;
-        $info['product_id'] =$product_id;
+        $info['title']      = $title;
+        $info['content']    = $content;
+        $info['product_id'] = $product_id;
+        $info['group_id']   = $group_id;
         $product_info_model->add($info);
         $this->success('上传成功','/Home/default/show_product?product_id='.$product_id);
     }
 
-    private function get_product_id(){
+    private function get_uniqid_id($model_name,$len=6){
         while(strlen($product_id = intval(creat_rand_str(6,'numeric'))) != 6);
-        $product_info_model = M('product_info');
-        $product_info  = $product_info_model->where('product_id = %d',$product_id)->select();
+        $product_info_model = M($model_name);
+        if ($model_name == 'group_info') {
+            $field = 'group_id';
+        }else{
+            $field = 'product_id';
+        }
+        $product_info  = $product_info_model->where($field.' = %d',$product_id)->select();
         if(!empty($product_info)){
-            $product_id = $this->get_product_id();
+            $product_id = $this->get_uniqid_id($model_name,$len);
         }
         return $product_id;
     }
     
+    public function img_check($file){
+        $file_name = substr($file, strrpos($file, '/')+1);
+        $path      = substr($file, 0,strrpos($file, '/'));
+
+        $image = new \Think\Image();
+        $image->open($file);
+        $width = $image->width();
+        if ($width >= 720) {
+            $file = $path.'thumb'.$file_name;
+            $image->thumb(720,1080)->save($file);
+        }
+
+        return $file;
+    }
+
+    public function test(){
+        echo $this->get_uniqid_id('product_info');
+    }
     /*
      * 进行登陆
      * 

@@ -19,10 +19,14 @@ class DefaultController extends Controller {
     public function show_product(){
         $product_id = I('product_id');
         $product_info = M('product_info');
+        $group_model = M('group_info');
+        $group = $group_model->select();
+        
         $result = $product_info->where('product_id=%d',$product_id)->select();
         $pic_info_model = M('pic_info');
         $pic_info = $pic_info_model->where('product_id =%d',$product_id)->select();
         $this->assign('pic_info',$pic_info);
+        $this->assign('group',$group);
         $this->assign('product_info',$result[0]);
         // var_dump($result);die();
         $this->display();
@@ -46,10 +50,6 @@ class DefaultController extends Controller {
     public function upload_file(){
         $title     = I('title');
         $content   = I('content');
-        // $title  = substr($title, 9,-10);
-        // $title  = substr($title, 0,-9);
-        // var_dump($title);
-        // die();
         $upload  = new \Think\Upload();
         $pic_info = M('pic_info');
         $product_info_model = M('product_info');
@@ -58,7 +58,6 @@ class DefaultController extends Controller {
         $upload->exts      = array('jpg', 'gif', 'png', 'jpeg');
         $upload->rootPath  = './Uploads/product/';
         $upload->savePath  = $product_id.'/';
-        // $upload->saveName  = 'time().'_'.mt_rand()';
         $upload->autoSub   = false;
         //上传文件
         $info  = $upload->upload();

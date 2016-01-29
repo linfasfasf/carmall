@@ -59,7 +59,7 @@
         <div class="mod mod-shopsigns">
             <div class="company fl">
                 <div class="company-logo fl">
-                    <a href="http://heshitools.cn.gongchang.com"> <img src="//timg1.gcimg.net/v1/pro/T1TECvBvVT1RCvBVdK.jpg" alt="浙江何仕汽车工具有限公司" /></a>
+                    <a href="http://heshitools.cn.gongchang.com"> <img src="//timg1.gcimg.net/v1/pro/T1TECvBvVT1RCvBVdK.jpg" alt="" /></a>
                 </div>
                 <div class="company-name fl">
                     <h1 class="com-name">厦门睿智达有限公司<i class="qrcode qr-large"><a href="http://m.gongchang.com/shop/heshitools/"></a></i></h1>
@@ -129,14 +129,20 @@
                     <div class="m-content">
                         <div class="proclass-list">
                             <ul>
+                                <foreach name="group" item="group_id">
                                 <li class="expand">
                                     <div class="side-sort-parent">
-                                        <a href="/product/t123290.html" title="引擎检测工具">引擎检测工具</a>
+                                        <a href="" title="">{$group_id.group_name}</a>
                                     </div>
                                 </li>
-                                
-
-
+                                </foreach>
+                                <br><hr>
+                                新建分组<br>
+                                <form action="{:U('home/user/creat_group')}" method="post">
+                                    <input type="text" name="group_name">
+                                    
+                                    <input type="submit" value="创建">
+                                </form>
                             </ul>
                         </div>
 
@@ -191,6 +197,15 @@
                     <div class="m-header"><h3 title="产品展示">上传详情</h3></div>
                                 
                             <form action="__URL__/upload_file" enctype="multipart/form-data" method="post">
+                                
+                                上传分组<br><select name="group">
+
+                                    <volist name="group" id="group_info">
+                                        <option value="{$group_info.group_id}">{$group_info.group_name}</option>
+                                    </volist>
+                                </select>
+                                <br><hr><br>
+
                                 <for start="0" end="$file_num"> 
                                 <input type="file" name="pic{$i}"><br><hr><br>
                                 </for>
@@ -274,35 +289,9 @@
 </div><!--//id="page-wrapper"-->
 
 
-<div id="mqrcode">
-    <div class="qrcode-img" data-qr="http://m.gongchang.com/shop/heshitools/"></div>
-    <p>扫一扫，查看手机商铺</p>
-</div>
-
-<!-- 在线客服 -->
-
-<script>
-    var data ={"user":[{"contact":"蓝国昌","qq":"2096994359","sex":1}],"message":"\u6b22\u8fce\u6765\u5230\u6211\u4eec\u7f51\u7ad9! ","isSelf":0};
-</script>
 
 
-<script id="atmjsnode" data-base="//static.gcimg.net/assets" type="text/javascript" src="//static.gcimg.net/assets/core/global/1.0.0/pkg/global_d5d288f.js"  data-config='{"async":{"alias":{"sys/shop/1.0.0:js/rule":"/sys/shop/1.0.0/js/rule_92ba03b.js","verify:main":"/core/verify/1.0.0/exports/main_6b0db03.js"},"deps":{"popup:main":["popup:css/popup.css"],"sys/common/1.0.0:usertop":["sys/common/1.0.0:usertop.css"],"sys/shop/1.0.0:main":["sys/common/1.0.0:usertop.css","sys/shop/1.0.0:css/style.css"]},"exists":{"popup:css/popup.css":1,"sys/common/1.0.0:usertop.css":1,"sys/shop/1.0.0:css/style.css":1}}}' ></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/cookie/1.0.2/exports/main_88e266d.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/sys/common/1.0.0/config_d0ec3b8.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/sys/common/1.0.0/usertop_50c5ce1.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/qrcode2/1.0.0/exports/main_5c60463.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/tongji/1.0.0/exports/main_1091bd0.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/search-global/1.0.0/exports/main_a38840a.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/sys/shop/1.0.0/js/chat_7f9ffde.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/popup/1.0.0/exports/main_8c7a6d6.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/slider/1.1.1/exports/main_aac6302.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/lib/jquery/1.11.3/exports/main_a3a5aa9.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/sys/shop/1.0.0/exports/main_86dbd60.js"></script>
-<script type="text/javascript">
 
-    atmjs.use('sys/shop/1.0.0:main')
-
-</script>
 
 </body>
 
