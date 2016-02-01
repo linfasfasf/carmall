@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="http://static.gcimg.net/sys/??wp/1.0.1/main.css,search/1.0.0/search-global.css" />
     <link rel="stylesheet" href="http://static.gcimg.net/shop/skin/t000/style.css" />
     <link rel="shortcut icon" href="//static.gcimg.net/favicon.ico" type="image/x-icon" />
-    <link rel="alternate" media="only screen and(max-width: 640px)" href="http://m.gongchang.com/shop/heshitools/" >
-    <meta name="mobile-agent" content="format=xhtml;url=http://m.gongchang.com/shop/heshitools/">
-    <meta name="mobile-agent" content="format=html5;url=http://m.gongchang.com/shop/heshitools/">
     <meta http-equiv="Cache-Control" content="no-transform" />
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
@@ -36,18 +33,7 @@
         }
     </style>
     <title>厦门睿智达有限公司|厦门睿智达有限公司网站</title>
-    <link rel="dns-prefetch" href="//i.gongchang.com" />
-    <link rel="dns-prefetch" href="//work.gongchang.com" />
-    <link rel="dns-prefetch" href="//operator.gongchang.com" />
-    <link rel="dns-prefetch" href="//op.gongchang.com" />
-    <link rel="dns-prefetch" href="//product.gongchang.com" />
-    <link rel="dns-prefetch" href="//x.gongchang.com" />
-    <link rel="dns-prefetch" href="//company.gongchang.com" />
-    <link rel="dns-prefetch" href="//home.gongchang.com" />
-    <link rel="dns-prefetch" href="//seller.gongchang.com" />
-    <link rel="dns-prefetch" href="//buyeruc.gongchang.com" />
-    <link rel="dns-prefetch" href="//img10.cn.gcimg.net" />
-    <link rel="dns-prefetch" href="//timg1.gcimg.net" />
+  
     <meta content="厦门睿智达有限公司地址：厦门市悦华路163号-193号J-7店面，主营产品：护理工具,制冷工具,汽车美容养护工具,汽车工具,工具车,厦门睿智达有限公司联系方式：0592-2991222。" name="description"/>
     <meta content="厦门睿智达有限公司，引擎检测工具,轮胎护理工具,制冷工具,汽车美容养护工具,汽车工具,工具车" name="keywords"/>
 </head>
@@ -58,7 +44,7 @@
         <div class="mod mod-shopsigns">
             <div class="company fl">
                 <div class="company-logo fl">
-                    <a href="http://heshitools.cn.gongchang.com"> <img src="//timg1.gcimg.net/v1/pro/T1TECvBvVT1RCvBVdK.jpg" alt="浙江何仕汽车工具有限公司" /></a>
+                    <a href="http://heshitools.cn.gongchang.com"> <img src="" alt="浙江何仕汽车工具有限公司" /></a>
                 </div>
                 <div class="company-name fl">
                     <h1 class="com-name">厦门睿智达有限公司<i class="qrcode qr-large"><a href="http://m.gongchang.com/shop/heshitools/"></a></i></h1>
@@ -77,7 +63,7 @@
         <div class="mod mod-topnav">
             <ul class="shop-nav">
                 <li class="current"><a href="http://heshitools.cn.gongchang.com" title="首页">首页</a></li>
-                <li ><a href="/about/" title="企业介绍">企业介绍</a></li>
+                <li ><a href="{:U('home/default/show_introduce')}" title="企业介绍">企业介绍</a></li>
                 <li ><a href="/contact/" title="联系我们">联系我们</a></li>
             </ul>
         </div>
@@ -128,16 +114,13 @@
                     <div class="m-content">
                         <div class="proclass-list">
                             <ul>
-                                <li class="expand">
+                                <foreach name="group" item="group_id">
+                                     <li class="expand">
                                     <div class="side-sort-parent">
-                                        <a href="/product/t123290.html" title="引擎检测工具">引擎检测工具</a>
+                                        <a href="{:U('home/default/show_group')}?group_id={$group_id.group_id}" title="">{$group_id.group_name}</a>
                                     </div>
                                 </li>
-                                <li class="expand">
-                                    <div class="side-sort-parent">
-                                        <a href="/product/t123291.html" title="轮胎护理工具">轮胎护理工具</a>
-                                    </div>
-                                </li>
+                                </foreach>
 
 
                             </ul>
@@ -345,7 +328,6 @@
 <script type="text/javascript" src="//static.gcimg.net/assets/sys/common/1.0.0/config_d0ec3b8.js"></script>
 <script type="text/javascript" src="//static.gcimg.net/assets/sys/common/1.0.0/usertop_50c5ce1.js"></script>
 <script type="text/javascript" src="//static.gcimg.net/assets/core/qrcode2/1.0.0/exports/main_5c60463.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/tongji/1.0.0/exports/main_1091bd0.js"></script>
 <script type="text/javascript" src="//static.gcimg.net/assets/core/search-global/1.0.0/exports/main_a38840a.js"></script>
 <script type="text/javascript" src="//static.gcimg.net/assets/sys/shop/1.0.0/js/chat_7f9ffde.js"></script>
 <script type="text/javascript" src="//static.gcimg.net/assets/core/popup/1.0.0/exports/main_8c7a6d6.js"></script>
@@ -361,3 +343,6 @@
     <noscript><a href="http://www.51.la/?2424689" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/2424689.asp" style="border:none" /></a></noscript>
 </div></body>
 </html>
+
+
+

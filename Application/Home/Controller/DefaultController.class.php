@@ -10,9 +10,27 @@ class DefaultController extends Controller {
 
         $query = 'select a.product_id , a.title, b.pic_name from product_info a, pic_info b where a.product_id = b.product_id and  b.default =1';
         $result = $product_info->query($query);
-//        var_dump($result);
         $this->assign('product_info',$result);
+
+        $group_model = M('group_info');
+        $group = $group_model->select();        
+        $this->assign('group',$group);
         $this->display();
+        
+    }
+
+    public function show_group(){
+        $group_id = I('group_id');
+        $product_info = M('product_info');
+        $query = 'select a.product_id , a.title, b.pic_name 
+        from product_info a, pic_info b where a.product_id = b.product_id and  b.default =1 and a.group_id ='.$group_id;
+        $result = $product_info->query($query);
+        $this->assign('product_info',$result);
+
+        $group_model = M('group_info');
+        $group = $group_model->select();        
+        $this->assign('group',$group);
+        $this->display('index');
         
     }
 
@@ -38,6 +56,16 @@ class DefaultController extends Controller {
         $this->display();
     }
 
+    public function show_introduce(){
+        $group_model = M('group_info');
+        $group = $group_model->select();
+        $this->assign('group',$group);
+        $this->display();
+    }
+
+    public function contact_us(){
+        $this->display();
+    }
 
     public function upload(){
         $num = I('get.file_num');

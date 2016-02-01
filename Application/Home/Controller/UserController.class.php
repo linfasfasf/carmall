@@ -56,23 +56,28 @@ class UserController extends Controller{
             $this->error($upload->getError());
         }else{
             foreach ($info as $key => $file) {
-                $file = img_check('/Uploads/product/'.$product_id.'/'.$file['savename']);
+                $file_name =$this->img_check('./Uploads/product/'.$product_id.'/'.$file['savename']);
                 $data['product_id'] = $product_id;
-                $data['pic_name']   = $file['savename'];
+                $data['pic_name']   = $file_name;
                 if ($key == 'pic0') {
                     $data['default'] =1;
                 }else{
                     $data['default'] = 0;
                 }
-                $pic_info->add($data);
+                $product_result = $pic_info->add($data);
             }
         }
         $info['title']      = $title;
         $info['content']    = $content;
         $info['product_id'] = $product_id;
         $info['group_id']   = $group_id;
-        $product_info_model->add($info);
-        $this->success('上传成功','/Home/default/show_product?product_id='.$product_id);
+        $pic_result = $product_info_model->add($info);
+        if ($product_result && $pic_result) {
+            $this->success('上传成功','/Home/default/show_product?product_id='.$product_id);    
+        } else {
+            $this->error('上传失败!');
+        }
+        
     }
 
     private function get_uniqid_id($model_name,$len=6){
@@ -98,11 +103,12 @@ class UserController extends Controller{
         $image->open($file);
         $width = $image->width();
         if ($width >= 720) {
-            $file = $path.'thumb'.$file_name;
-            $image->thumb(720,1080)->save($file);
+            // $file = $path.'/thumb'.$file_name;
+            $file_name = 'thumb'.$file_name;
+            $image->thumb(720,1080)->save($path.'/'.$file_name);
         }
 
-        return $file;
+        return $file_name;
     }
 
     public function test(){
