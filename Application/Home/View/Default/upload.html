@@ -59,7 +59,7 @@
         <div class="mod mod-shopsigns">
             <div class="company fl">
                 <div class="company-logo fl">
-                    <a href="http://heshitools.cn.gongchang.com"> <img src="//timg1.gcimg.net/v1/pro/T1TECvBvVT1RCvBVdK.jpg" alt="" /></a>
+                    <a href="http://heshitools.cn.gongchang.com"> <img src="" alt="" /></a>
                 </div>
                 <div class="company-name fl">
                     <h1 class="com-name">厦门睿智达有限公司<i class="qrcode qr-large"><a href="http://m.gongchang.com/shop/heshitools/"></a></i></h1>
@@ -78,8 +78,8 @@
         <div class="mod mod-topnav">
             <ul class="shop-nav">
                 <li class="current"><a href="http://heshitools.cn.gongchang.com" title="首页">首页</a></li>
-                <li ><a href="/about/" title="企业介绍">企业介绍</a></li>
-                <li ><a href="/contact/" title="联系我们">联系我们</a></li>
+                <li ><a href="{:U('home/default/show_introduce')}" title="企业介绍">企业介绍</a></li>
+                <li ><a href="{:U('home/default/contact_us')}" title="联系我们">联系我们</a></li>
             </ul>
         </div>
         <!--导航结束-->
@@ -224,144 +224,8 @@
                                                                    
                 </div>
             </div>
+
             
-            <div class="contactway-map" id="map">
-                        <div id='commap'></div>
-                        <script type="text/javascript" src="http://api.map.baidu.com/api?key=a4479f7f47bc5807fc999858afc3e8f9&v=1.1&services=true" ></script>
-                        <script type="text/javascript">
-
-                        //comid 公司ID  width height 地图宽高
-                        //comMap();  显示地图信息用于动态显示
-                        var comid=1,infos="",lat="",lng="",pro="",city="",width=728,height=420;
-                        function init()
-                        {
-                                                comid= 167393;
-                        pro  = "浙江省";
-                        city = "";
-                        zone = "";
-                        address = "浙江省诸暨市次坞高速公速出口北100米";
-                        infos = "<span style='font-size:12px;'>浙江何仕汽车工具有限公司<br/>浙江省浙江省诸暨市次坞高速公速出口北100米</span>";
-                                                document.getElementById("commap").style.width  = "728px";
-                        document.getElementById("commap").style.height = "420px";
-                        }
-                        //地图初使化
-                        function initMap(sPoint,sZoom)
-                        {
-                            map = new BMap.Map("commap");
-                            map.enableScrollWheelZoom();
-                            if (typeof(sPoint) == "object" && typeof(sZoom) == "number")
-                            {
-                                point = sPoint;
-                                map.centerAndZoom(point, sZoom);
-                            } else
-                            {
-                                point = new BMap.Point(116.404, 39.915);
-                                map.centerAndZoom(point, 13);
-                                addMarker(point);
-                            }
-                            //添加精简控件
-                            var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL}
-                            map.addControl(new BMap.NavigationControl(opts));
-                        }
-
-                        //添加标注
-                        function addMarker(point)
-                        {
-                            // 创建标注
-                            marker = new BMap.Marker(point);
-                            map.addOverlay(marker);
-                            marker.addEventListener('click', function(){openSaveInfo(infos);});
-
-                        }
-                        //保存坐标信息提示
-                        function openSaveInfo(info)
-                        {
-                        if(typeof(info) == "undefined"){
-                                tip = "";
-                                if(map.getZoom() < 13)
-                                {
-                                    tip = "请放大地图后再进行操作<br />双击鼠标左键放大地图，点工具栏的缩小按钮缩小地图<br />";
-                                }
-                                info = "<center>如果位置不是您所需要的可以继续拖动标记！<br />"+tip+"位置已更改是否保存？<br /><br /><input type='button' value='是' onclick='saveLatLng();' /><input type='button' value='否' onclick='drags();' /></center>";
-                            }
-                        var infoWindow = new BMap.InfoWindow(info, {});
-                        marker.openInfoWindow(infoWindow, map.getCenter());
-                        }
-
-                        function isEmptyObject(a) {
-                            var b;
-                            for (b in a)
-                                return !1;
-                            return !0
-                        }
-                        //地图搜索功能
-                        function showAddress(keyword)
-                        {
-                        //搜索之前清除所有标注
-                        //map.clearOverlays();
-                            //想达到效果把map:map去掉 现在
-                        var local = new BMap.LocalSearch(map, {renderOptions: {map: map,autoViewport:true,selectFirstResult:false},pageCapacity:1});
-                            local.search(keyword);
-                            //local.getResults();
-                            local.setSearchCompleteCallback(function(searchResult){
-                                    var poi = searchResult.getPoi(0);
-                                    sPoint = poi.point;
-                                    if(typeof(poi) == "undefined"){
-                                        sPoint = point;
-                                        alert("没有查找到您要搜索的内容！");
-                                    } else {
-                                        addMarker(poi.point);
-                                    }
-                            });
-                            local.clearResults();
-                            setTimeout(function(){
-                                sZoom = map.getZoom();
-                                initMap(sPoint, sZoom);
-                                addMarker(sPoint);
-                                openSaveInfo(infos);
-                            },300);
-                        }
-                        //显示公司地图
-                        function mapOP(lat, lng, companyname, zoomSize)
-                        {
-                        if (lng == "" && lat == "" || lng == 0 && lat == 0) {
-                                //没有标注信息时的提示
-                                info = "<center>请拖动此标记选择<strong>" + companyname + "</strong>的位置</center>";
-                                point = map.getCenter();
-                                //addMarker(point);
-                                setTimeout(function(){openSaveInfo(info)},300);
-                            } else {
-                                //有标注信息时的操作 增加标注点
-                                info = "" + companyname + "";
-                                point = new BMap.Point(lng, lat);
-                                map.centerAndZoom(point, zoomSize); 
-                                addMarker(point);
-                                openSaveInfo(info);
-                            }
-                        }
-                        //根据公司信息显示地图
-                        function comMap(pro,city,lng,lat,companyname,cid,zoomSize)
-                        {
-                            comid = cid;
-                            if(typeof(zoomSize) == "undefined" || zoomSize == "" || zoomSize == 0){
-                                zoomSize = 15;
-                            }
-                            initMap();
-                            if(pro == '' && city == ''){
-                                str = '中国';
-                            } else {
-                                str = pro + ' ' + city + ' ' + zone + ' ' + address;
-                            }
-                            if (lng == "" && lat == "" || lng == 0 && lat == 0) {
-                                showAddress(str);
-                            } else {
-                                mapOP(lat,lng,companyname, zoomSize);
-                            }
-                        }
-                        init();
-                        comMap(pro,city,lng,lat,infos,comid);
-                    </script>
-                    </div>
 
             
            

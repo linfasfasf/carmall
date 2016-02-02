@@ -64,6 +64,9 @@ class DefaultController extends Controller {
     }
 
     public function contact_us(){
+        $group_model = M('group_info');
+        $group = $group_model->select();
+        $this->assign('group',$group);
         $this->display();
     }
 
@@ -126,44 +129,10 @@ class DefaultController extends Controller {
         echo $this->get_product_id();
     }
 
-    /*
-     * 首页商品信息显示下一页
-     */
-    public function next_page(){
-        $page = I('get.p');
-        $tea = D('Home/Guanyintea');
-        $len =C('PAGE_SHOW_NUM');
-        $product_info = $tea->get_product_info_page($page,$len);
-        $count        = $tea->get_product_total_num();
-        if(count($product_info)==0 && $count ==0){
-            $product_info = '';
-        }
-        $this->assign('current_page',$page);
-        $this->assign('total_product',$count);
-        $this->assign('total_page_add',intval(ceil($count/6)+1));
-        $this->assign('product_info',$product_info);
-        $this->display('index');
-    }
-
-    public function order_by(){
-        $tea          = D('Guanyintea');
-        $len          = C('PAGE_SHOW_NUM');
-        $product_info = $tea->order_by($len);
-        $count        = $tea->get_product_total_num();
-
-        $this->assign('current_page',$p=1);
-        $this->assign('total_product',$count);
-        $this->assign('total_page_add',intval(ceil($count/6)+1));
-        $this->assign('product_info',$product_info);
-        $this->display('index');
-    }
+ 
 
 
 
 
-    public function testajax(){
-        $product_id = I('value');
-        echo 1;
-    }
 
 }
