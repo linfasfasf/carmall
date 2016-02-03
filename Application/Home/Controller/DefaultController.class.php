@@ -124,14 +124,43 @@ class DefaultController extends Controller {
         return $product_id;
     }
 
-    public function test(){
-        echo creat_rand_str(6,'numeric').PHP_EOL;
-        echo $this->get_product_id();
+    public function test()
+    {
+        $phpexcel_obj = get_phpexcel();
+        $time = date('H-i-s');
+        $phpexcel_obj->getProperties()
+                     ->setCreator("carmall")
+                     ->setLastModifiedBy("carmall")
+                     ->setTitle($time)
+                     ->setSubject("Test Document")
+                     ->setDescription("descript")
+                     ->setKeywords("office")
+                     ->setCategory("test file");
+        $pic_info = M('pic_info');
+        $result = $pic_info->select();
+        //设置标题栏
+        $phpexcel_obj->setActiveSheetIndex(0)
+                     ->setCellValue('A1','id')
+                     ->setCellValue('B1','product_id')->setCellValue('C1','pic_name')->setCellValue('D1','default');
+
+        $line ='2';
+        foreach($result as $pic_info){
+            $char = 'A';
+//            $phpexcel_obj->setActiveSheetIndex(0)
+//                        ->setCellValue($char++.$line, $pic_info['id'])
+//                        ->setCellValue($char++.$line, $pic_info['product_id'])->setCellValue($char++.$line, $pic_info['pic_name'])->setCellValue($char.$line, $pic_info['default']);
+            foreach($pic_info as $value){
+                $phpexcel_obj->setActiveSheetIndex(0)->setCellValue($char++.$line, $value);
+            }
+            $line++;
+        }
+
+        $writer_obj = \PHPExcel_IOFactory::createWriter($phpexcel_obj, 'Excel2007');
+        $writer_obj->save('C:/Users/Administrator/Desktop/php/'.$time.'.xlsx');
+        echo 'yes';
     }
 
- 
-
-
+    
 
 
 
