@@ -22,7 +22,7 @@ class AdminController extends Controller{
         foreach ($_POST as $key => $value){
             if(is_array($value)){
                 $_POST[$key] =$value;
-            }  else {
+            }else {
                 $_POST[$key]= mysql_real_escape_string($value);
             }
         }
@@ -34,11 +34,11 @@ class AdminController extends Controller{
     
     
     public function check_login(){
-        $is_login = session('user_name');
+        $is_login = session('RZD_USER.uid');
         if(!$is_login){
+            session('request', $_SERVER['REQUEST_URI']);
             $this->error('您还未登陆!',U('Home/public/login'));
-        }
-                
+        }             
     }
     
    

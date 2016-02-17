@@ -195,7 +195,7 @@ class UserController extends AdminController{
      * 登出
      */
     public function logout(){
-        session('user_info',NULL);
+        session('RZD_USER',NULL);
         echo 'logout success';
     }
 

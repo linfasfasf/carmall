@@ -20,11 +20,17 @@ class PublicController extends Controller{
 			$user = D('user');
 			$result = $user->login($user_name, $password);
 			if ($result) {
-				var_dump(session('user_info'));	
+				$redirect = session('request') ? session('request') : 'home/default/index';
+				$this->success('登录成功!', $redirect);	
 			}else{
-				echo 'login fail';
+				$this->error('登录失败!');
 			}
 		}
 		
+	}
+
+	public function test(){
+		$user_model = D('user');
+		echo  $user_model->inster_login_info();
 	}
 }

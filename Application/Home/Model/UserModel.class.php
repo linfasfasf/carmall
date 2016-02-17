@@ -87,23 +87,52 @@ class UserModel extends Model{
         }
         return true;
     }
+
+    public function get_user_id_unique(){
+        $user_id = creat_rand_str(6, 'numeric');
+        $user_model = D('user');
+        if ((!$user_model->where('uid =%d',$user_id)->find()) &&  (strlen(floor($user_id)) == 6)) {
+            return $user_id;
+        }
+        return $this->get_user_id_unique();
+    }
+
+
+    public function inster_login_info(){
+        $username = I('user');
+        $password = I('pass');
+        $password = md5($password);
+        $map['uid']       = $this->get_user_id_unique();
+        $map['last_login']= get_client_ip();
+        $map['user_name'] = $username;
+        $map['password']  = $password;
+        $user_model = D('user');
+        $result = $user_model->add($map);
+        if ($result) {
+            echo "insert success";
+        }else{
+            echo "insert fail";
+        }
+
+    }
     /*
      * 验证登录账号以及密码，记录登录信息到session
      */
     public function login($username,$password){
-        $user               = M('User');
-        $map['username']  = $username;
-        // $map['password']  = md5($password);
-        $map['password'] = $password;
-        $result =$user->where($map)->select();
-        $data['user_info']['uid']           = $result[0]['uid'];
-        $data['user_info']['nickname']     = $result[0]['nickname'];
-        $data['user_info']['username']     = $result[0]['username'];
-        session('user_info',$data);
-        if($result){
+        $user             = M('User');
+        $map['user_name']  = $username;
+        $map['password']  = md5($password);
+        $result =$user->where($map)->field('user_name, uid')->select();
+        if ( !is_null($result[0])) {
+            $data['last_login'] = date("Y-m-d H:i:s");
+            $data['last_ip']    = get_client_ip();
+            $info = $user->where('uid = %d', $result[0]['uid'])->save($data);
+            session('RZD_USER.uid', $result[0]['uid']);
+            session('RZD_USER.user_name', $result[0]['user_name']);
             return true;
+        }else{
+            return false;
         }
-        return false;
     }
 
 
