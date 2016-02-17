@@ -93,7 +93,8 @@ class UserModel extends Model{
     public function login($username,$password){
         $user               = M('User');
         $map['username']  = $username;
-        $map['password']  = md5($password);
+        // $map['password']  = md5($password);
+        $map['password'] = $password;
         $result =$user->where($map)->select();
         $data['user_info']['uid']           = $result[0]['uid'];
         $data['user_info']['nickname']     = $result[0]['nickname'];

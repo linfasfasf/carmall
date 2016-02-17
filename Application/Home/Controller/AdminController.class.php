@@ -9,6 +9,10 @@ class AdminController extends Controller{
         parent::__construct();
         $this->check_login();
     }
+
+    public function login(){
+        $this->display('default/login');
+    }
     
     /**
      * 检查输入参数
@@ -32,7 +36,7 @@ class AdminController extends Controller{
     public function check_login(){
         $is_login = session('user_name');
         if(!$is_login){
-            $this->error('您还未登陆!',U('Home/User/index'));
+            $this->error('您还未登陆!',U('Home/public/login'));
         }
                 
     }

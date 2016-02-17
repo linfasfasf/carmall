@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-class UserController extends Controller{
+class UserController extends AdminController{
     
     public function __construct() {
         parent::__construct();

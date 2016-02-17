@@ -38,11 +38,11 @@
         <div class="span2">
         </div>
         <div class="span6">
-            <form class="form-inline">
+            <form class="form-inline" action="{:U('home/public/user_login')}" method="post">
                 <fieldset>
                      <legend>账号登陆</legend> 
-                     <label>用户名</label><input type="text" /> <br>
-                     <label>密　码</label><input type="text" />
+                     <label>用户名</label><input type="text" name="user_name"/> <br>
+                     <label>密　码</label><input type="text" name="password" />
                      <span class="help-block">请填写正确的信息.</span> 
                       <button type="submit" class="btn">登陆</button>
                 </fieldset>
