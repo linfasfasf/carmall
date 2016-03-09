@@ -121,7 +121,7 @@ class UserModel extends Model{
     public function login($username,$password){
         $user             = M('User');
         $map['user_name']  = $username;
-        $map['password']  = md5($password);
+        $map['password']  = $password;
         $result =$user->where($map)->field('user_name, uid')->select();
         if ( !is_null($result[0])) {
             $data['last_login'] = date("Y-m-d H:i:s");
