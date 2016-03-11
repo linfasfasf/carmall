@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2016 年 03 月 11 日 15:46
+-- 生成日期: 2016 年 03 月 11 日 16:06
 -- 服务器版本: 5.5.20
 -- PHP 版本: 5.3.10
 
@@ -49,7 +49,7 @@ INSERT INTO `group_info` (`id`, `group_id`, `group_name`) VALUES
 CREATE TABLE IF NOT EXISTS `pic_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
-  `pic_name` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+  `pic_name` varchar(255) NOT NULL,
   `default` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -63,8 +63,8 @@ CREATE TABLE IF NOT EXISTS `pic_info` (
 CREATE TABLE IF NOT EXISTS `product_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `content` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` varchar(255) NOT NULL,
   `group_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
