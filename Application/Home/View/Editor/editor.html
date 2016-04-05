@@ -36,19 +36,8 @@
             width: 980px;
         }
     </style>
-    <title>厦门睿智达有限公司|厦门睿智达有限公司网站</title>
-    <link rel="dns-prefetch" href="//i.gongchang.com" />
-    <link rel="dns-prefetch" href="//work.gongchang.com" />
-    <link rel="dns-prefetch" href="//operator.gongchang.com" />
-    <link rel="dns-prefetch" href="//op.gongchang.com" />
-    <link rel="dns-prefetch" href="//product.gongchang.com" />
-    <link rel="dns-prefetch" href="//x.gongchang.com" />
-    <link rel="dns-prefetch" href="//company.gongchang.com" />
-    <link rel="dns-prefetch" href="//home.gongchang.com" />
-    <link rel="dns-prefetch" href="//seller.gongchang.com" />
-    <link rel="dns-prefetch" href="//buyeruc.gongchang.com" />
-    <link rel="dns-prefetch" href="//img10.cn.gcimg.net" />
-    <link rel="dns-prefetch" href="//timg1.gcimg.net" />
+    <title>厦门睿智达汽车用品|厦门睿智达汽车用品</title>
+   
     <meta content="厦门睿智达有限公司地址：厦门市悦华路163号-193号J-7店面，主营产品：护理工具,制冷工具,汽车美容养护工具,汽车工具,工具车,厦门睿智达有限公司联系方式：0592-2991222。" name="description"/>
     <meta content="厦门睿智达有限公司，引擎检测工具,轮胎护理工具,制冷工具,汽车美容养护工具,汽车工具,工具车" name="keywords"/>
 </head>
@@ -59,10 +48,10 @@
         <div class="mod mod-shopsigns">
             <div class="company fl">
                 <div class="company-logo fl">
-                    <a href="http://heshitools.cn.gongchang.com"> <img src="__PUBLIC__/images/logo.png" alt="" /></a>
+                    <a href="#"> <img src="__PUBLIC__/images/logo.png" alt="" /></a>
                 </div>
                 <div class="company-name fl">
-                    <h1 class="com-name">厦门睿智达汽车用品<i class="qrcode qr-large"><a href="http://m.gongchang.com/shop/heshitools/"></a></i></h1>
+                    <h1 class="com-name">厦门睿智达汽车用品</h1>
                     <p class="com-pro">
                         <span>主营：</span>引擎检测工具、轮胎护理工具、制冷工具、汽车美容养护工具、汽车工具、工具车等
                     </p>
@@ -70,14 +59,14 @@
             </div>
             <div class="call-num fr">
                 <p class="call-number">
-                    0592-2991222					</p>
+                    0592-2991222                    </p>
             </div>
         </div>
         <!-- 企业头部结束-->
         <!-- 导航-->
         <div class="mod mod-topnav">
             <ul class="shop-nav">
-                <li class="current"><a href="http://heshitools.cn.gongchang.com" title="首页">首页</a></li>
+                <li class="current"><a href="{:U('home/default/index')}" title="首页">首页</a></li>
                 <li ><a href="{:U('home/default/show_introduce')}" title="企业介绍">企业介绍</a></li>
                 <li ><a href="{:U('home/default/contact_us')}" title="联系我们">联系我们</a></li>
             </ul>
@@ -108,12 +97,12 @@
             <div class="mod mod-prointro">
                 <div class="m-body">
                     <div class="m-header">
-                        <h3>企业介绍</h3>
+                        <h3>已上传产品</h3>
                     </div>
                     <div class="m-content">
                         <div class="prointro-list">
                             <ul>
-                                <li><a href="/about/">企业简介</a></li>
+                                <li><a href="{:U('home/editor/index')}">查看已上传产品</a></li>
                             </ul>
                         </div>
                     </div>
@@ -136,13 +125,8 @@
                                     </div>
                                 </li>
                         </foreach>
-                                <br><hr>
-                                新建分组<br>
-                                <form action="{:U('home/user/creat_group')}" method="post">
-                                    <input type="text" name="group_name">
-                                    
-                                    <input type="submit" value="创建">
-                                </form>
+
+
                             </ul>
                         </div>
 
@@ -155,10 +139,10 @@
             <div class="mod mod-propicl">
                 <div class="m-body">
                     <div class="m-header">
-                        <h3>修改已上传产品</h3>
+                        <h3>操作</h3>
                     </div>
                     <div class="m-content">
-                        <div class="no-content"><a href="{:U('home/editor/index')}"><p>修改已上传产品</p></a></div>
+                        <div class="no-content"><a href="{:U('home/editor/del_product')}?product_id={$product_info.product_id}"><p>删除该产品</p></a></div>
 
                     </div>
                 </div>
@@ -169,49 +153,90 @@
         <!--左边主题板块结束-->
         <!-- 右面主题板块-->
         <div class="main-wrap fr">
-            
-
+         
             <!--最新产品-->
             <div class="mod mod-starpro">
                 <div class="m-body">
-                    <div class="m-header"><h3 title="产品展示">上传详情</h3></div>
+                    <div class="m-header"><h3 title="产品展示">产品详情</h3></div>
+                                            
+                            <!-- <ul > -->
                                 
-                            <form action="__URL__/upload_file" enctype="multipart/form-data" method="post">
+                                <foreach name="pic_info" item="vo">
+                                    
+                                            
+                                                <if condition="$vo.default eq 1">
+                                                    
+                                            <img style="width:300px;height:250px; max-width:100%;max-height:100%;" src="/Uploads/product/{$vo.product_id}/{$vo.pic_name}" alt="供应羊毛球、海棉球">
+                                                 </if>
+                                            </foreach>                      
                                 
-                                上传分组<br><select name="group">
-
-                                    <volist name="group" id="group_info">
-                                        <option value="{$group_info.group_id}">{$group_info.group_name}</option>
-                                    </volist>
-                                </select>
-                                <br><hr><br>
-
-                                <for start="0" end="$file_num"> 
-                                <input type="file" name="pic{$i}"><br><hr><br>
-                                </for>
-                                <br>
-                                <hr>
-                                商品标题<br><textarea  name="title" cols="50" rows="4"></textarea><br><hr><br>
-                                
-                                <!-- 加载编辑器的容器 -->
-                                商品描述<br>
-                                 
-                                <textarea  name="content" cols="80" rows="6"></textarea><br><hr><br>
-                                <input type="submit" value="提交"><br>
-                            </form>
-
-                            <a href="__URL__/upload?file_num={$file_num+1}"><input type="button" value="添加上传文件数量" ></a><br>
-                                                                   
+                            <!-- </ul> -->                        
+                    
                 </div>
             </div>
 
-            
+            <form action="__URL__/modify" method="get">
 
+            <div class="mod mod-pronews">
+                <div class="m-body">
+                    <div class="m-header"><h3 title="产品简介">产品名称</h3></div>
+                    <div class="m-content">
+                        <empty name="product_info">
+                            <div class="no-content"><p>暂无简介</p></div>
+                            <else />
+                             <textarea  name="title" cols="30" rows="2">{$product_info.title}</textarea> 
+                        </empty>
+                    </div>
+                </div>
+            </div>
             
-           
+            
+            <div class="mod mod-pronews">
+                <div class="m-body">
+                    <div class="m-header"><h3 title="产品简介">产品简介</h3></div>
+                    <div class="m-content">
+                        <empty name="product_info">
+                            <div class="no-content"><p>暂无简介</p></div>
+                            <else />
+                             <textarea  name="content" cols="80" rows="6">{$product_info.content}</textarea> <br>
+                             <input type="hidden" value="{$product_info.product_id}" name="product_id">
+                             <input type="submit" value="修改产品名称和介绍">
+                        </empty>
+                    </div>
+                </div>
+            </div>
+            </form>
             
             
-            
+            <div class="mod mod-contact">
+                <div class="m-body">
+                    <div class="m-header"><h3 title="图片信息">图片信息</h3></div>
+                    <div class="m-content">
+                        <div>
+                            <form action="__URL__/add_img" enctype="multipart/form-data" method="post">
+                            <?php $i=1;?>
+                            <foreach name='pic_info' item='vo'>
+                                <?php if($i != 1){ ?>
+                                <a href="{:U('home/editor/del_img')}?pic_name={$vo.pic_name}&product_id={$vo.product_id}">
+                                <input type="button"  value="删除下面图片"></a>  <br>
+                                <?php } $i++;?>
+                        <img  src="/Uploads/product/{$vo.product_id}/{$vo.pic_name}" alt="供应羊毛球、海棉球"><br>
+                        <br><hr>    
+
+                            </foreach>
+                            <br>
+                            <p>添加图片</p>
+                            <input type="hidden" value="{$vo.product_id}" name="product_id">
+                            <input type="file" name="pic1"><br>
+                            <input type="submit" value="上传图片">
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--联系方式结束-->
+        </div>
         <!-- 右面主题板块结束-->
     </div>
 
@@ -236,7 +261,7 @@
                     <h4 class="footer-contact2">主营产品</h4>
                     <div class="ft-product">
                         <p>
-                            引擎检测工具										轮胎护理工具										制冷工具										汽车美容养护工具										汽车工具										工具车										</p>
+                            引擎检测工具                                      轮胎护理工具                                      制冷工具                                        汽车美容养护工具                                        汽车工具                                        工具车                                     </p>
                     </div>
                 </div>
                 <!--联系我们-->
@@ -271,7 +296,11 @@
 </div><!--//id="page-wrapper"-->
 
 
+<!-- 在线客服 -->
 
+<script>
+    var data ={"user":[{"contact":"蓝国昌","qq":"2096994359","sex":1}],"message":"\u6b22\u8fce\u6765\u5230\u6211\u4eec\u7f51\u7ad9! ","isSelf":0};
+</script>
 
 
 

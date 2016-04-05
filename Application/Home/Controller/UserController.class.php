@@ -73,7 +73,7 @@ class UserController extends AdminController{
         $info['group_id']   = $group_id;
         $pic_result = $product_info_model->add($info);
         if ($product_result && $pic_result) {
-            $this->success('上传成功','/Home/default/show_product?product_id='.$product_id);    
+            $this->success('上传成功','/Home/editor/editor?product_id='.$product_id);    
         } else {
             $this->error('上传失败!');
         }
