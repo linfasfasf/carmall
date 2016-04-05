@@ -11,7 +11,7 @@ class AdminController extends Controller{
     }
 
     public function login(){
-        $this->display('default/login');
+        $this->display('Default/login');
     }
     
     /**

@@ -33,7 +33,7 @@ class UserController extends AdminController{
         $result = $group_model->select();
         $this->assign('group',$result);
         $this->assign('file_num',$num);
-        $this->display('default/upload');
+        $this->display('Default/upload');
     }
 
     public function upload_file(){

@@ -7,7 +7,7 @@ class PublicController extends Controller{
 	}
 
 	public function login(){
-		$this->display('default/login');
+		$this->display('Default/login');
 	}
 
 	public function user_login(){
