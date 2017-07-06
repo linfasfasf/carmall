@@ -99,14 +99,14 @@ class UserController extends AdminController{
         $file_name = substr($file, strrpos($file, '/')+1);
         $path      = substr($file, 0,strrpos($file, '/'));
 
-        $image = new \Think\Image();
-        $image->open($file);
-        $width = $image->width();
-        if ($width >= 720) {
-            // $file = $path.'/thumb'.$file_name;
-            $file_name = 'thumb'.$file_name;
-            $image->thumb(720,1080)->save($path.'/'.$file_name);
-        }
+//        $image = new \Think\Image();
+//        $image->open($file);
+//        $width = $image->width();
+//        if ($width >= 720) {
+//            // $file = $path.'/thumb'.$file_name;
+//            $file_name = 'thumb'.$file_name;
+//            $image->thumb(720,1080)->save($path.'/'.$file_name);
+//        }
 
         return $file_name;
     }
@@ -114,39 +114,36 @@ class UserController extends AdminController{
     public function test(){
         echo $this->get_uniqid_id('product_info');
     }
-    /*
+    /**
      * 进行登陆
-     * 
      *
      */
     public function login(){
-        $refer_page = $_SERVER['HTTP_REFERER'];
-        session('refer_page',$refer_page);
-        $user_info = session('user_info');
-        if(isset($user_info)){
-            $msg        = '您已登录，无须重复登录！';
-            $this->assign('refer_page',session('refer_page'));
-            $this->assign('msg',$msg);
-        }else{
-            $user_name = I('username');
-            $pssword   = I('password');
-//            var_dump($user_name);
-            if(empty($user_name)|empty($pssword)){
-                $this->index();
-                exit();
-            }
-            $user   = D('User');
-            $result  = $user->login($user_name,$pssword);
-            if($result){
-                $msg    = '恭喜您，登录成功！';
-                $this->assign('refer_page',session('refer_page'));
-            }else{
-                $msg    = '登录失败，请重新登录。';
-            }
+        $user_name = I('username');
+        $pssword   = I('password');
+        if(empty($user_name)|empty($pssword)){
+            $this->error("登录失败");
         }
+        $user   = D('User');
+        $result  = $user->login($user_name,$pssword);
+        if($result){
+            $msg    = '登录成功！';
+        }else{
+            $msg    = '登录失败，请重新登录。';
+        }
+
         $this->assign('msg',$msg);
-//        var_dump($msg);
         $this->display('Index/login');
+    }
+
+
+    public function isLogin()
+    {
+        $sessionId = session("id");
+        if(!empty($sessionId)){
+            return true;
+        }
+        return false;
     }
 
 

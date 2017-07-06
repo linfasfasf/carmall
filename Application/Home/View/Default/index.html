@@ -1,333 +1,132 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="http://static.gcimg.net/sys/??wp/1.0.1/main.css,search/1.0.0/search-global.css" />
-    <link rel="stylesheet" href="http://static.gcimg.net/shop/skin/t000/style.css" />
-    <link rel="shortcut icon" href="//static.gcimg.net/favicon.ico" type="image/x-icon" />
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
-    <link type="text/css" rel="stylesheet" href="//static.gcimg.net/assets/core/popup/1.0.0/css/popup_9549eaf.css" />
-    <link type="text/css" rel="stylesheet" href="//static.gcimg.net/assets/sys/common/1.0.0/usertop_d923ba4.css" />
-    <link type="text/css" rel="stylesheet" href="//static.gcimg.net/assets/sys/shop/1.0.0/css/style_0d7d914.css" />
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?1feded28e200c1f62aa6738cb40e9f68";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-    <style>
-        /* 这个放到商铺样式里 */
-        .usertop .fir {
-            width: auto;
-        }
+<include file="header"/>
 
-        .usertop .top-inner {
-            width: 980px;
-        }
-    </style>
-    <title>厦门睿智达汽车用品|厦门睿智达汽车用品网站</title>
-  
-    
-</head>
-<body>
-<!--商铺头部及导航-->
-    <div id="header">
-        <!-- 企业头部-->
-        <div class="mod mod-shopsigns">
-            <div class="company fl">
-                <div class="company-logo fl">
-                    <a href=""> <img src="__PUBLIC__/images/logo.png" alt="厦门睿智达有限公司" /></a>
-                </div>
-                <div class="company-name fl">
-                    <h1 class="com-name">厦门睿智达汽车用品</h1>
-                    <p class="com-pro">
-                        <span>主营：</span>高清行车记录仪、胎压监测系统、汽车用品等
-                    </p>
+        <script>
+            function GetUrlName(){
+                var url=window.location.href.toLowerCase();
+                if(url.indexOf("?")!=-1){
+                    url=url.substring(url.lastIndexOf("/")+1,url.indexOf("?"));
+                }else{
+                    url=url.substring(url.lastIndexOf("/") + 1);
+                }
+                return url;
+            }
+            function GetUrlParms(){
+                var parms=location.search.substring(1);
+                parms=parms.toLowerCase();//加上这句
+                return GetParms(parms);
+            }
+            function GetParms(parms){
+                var args=new Object();
+                var pairs=parms.split("&");//在逗号处断开
+                for(var i=0;i<pairs.length;i++)
+                {
+                    var pos=pairs[i].indexOf('=');//查找name=value
+                    if(pos==-1)   continue;//如果没有找到就跳过
+                    var argname=pairs[i].substring(0,pos);//提取name
+                    var value=pairs[i].substring(pos+1);//提取value
+                    args[argname]=decodeURIComponent(value);//存为属性
+                }
+                return args;
+            }
+            function Header(){
+                var urlName=GetUrlName();
+                var urlParm=GetUrlParms();
+                //var Tabul=document.getElementById("navon"); //这里放ul的id
+                var strmax=9;
+                for(var i=0;i<strmax;i++){
+                    document.getElementById('Tablis'+i).className="tp";
+                }
+                if(urlName=="index.aspx"){
+                    document.getElementById('Tablis0').className="on";
+                }else if(urlName=="about.aspx"){
+                    document.getElementById('Tablis1').className="on";
+                }else if(urlName=="culture.aspx"){
+                    document.getElementById('Tablis2').className="on";
+                }else if(urlName=="hycy.aspx"){
+                    document.getElementById('Tablis3').className="on";
+                }else if(urlName=="pro.aspx"){
+                    document.getElementById('Tablis4').className="on";
+                }else if(urlName=="cxjs.aspx"){
+                    document.getElementById('Tablis5').className="on";
+                }else if(urlName=="news.aspx"){
+                    document.getElementById('Tablis6').className="on";
+                }else if(urlName=="jobs.aspx"){
+                    document.getElementById('Tablis7').className="on";
+                }else if(urlName=="contact.aspx"){
+                    document.getElementById('Tablis8').className="on";
+                }
+            }
+            Header();
+        </script>
+
+
+        <div style=" clear:both;"></div>
+    </div>
+    <div class="banner">
+
+        <div class="focus">
+
+            <div id="myFocus-wrap">
+                <div id="myFocus" style="visibility:hidden"><!--焦点图盒子-->
+                    <ul class="pic"><!--内容列表-->
+
+                        <li><a href="pro.aspx"><img src="__PUBLIC__/images/11.jpg" width="1200" height="500" thumb="" alt="版权属于作者，图片4来源于网络" text="图片4更详细的描述文字" /></a></li>
+                        <li><a href="pro.aspx"><img src="__PUBLIC__/images/22.jpg" width="1200" height="500" thumb="" alt="版权属于作者，图片4来源于网络" text="图片4更详细的描述文字" /></a></li>
+                        <li><a href="pro.aspx"><img src="__PUBLIC__/images/33.jpg" width="1200" height="500" thumb="" alt="版权属于作者，图片4来源于网络" text="图片4更详细的描述文字" /></a></li>
+
+
+
+                    </ul>
                 </div>
             </div>
-            <div class="call-num fr">
-                <p class="call-number">
-                    13696963187				</p>
-            </div>
+            <div class="clear"></div>
         </div>
-        <!-- 企业头部结束-->
-        <!-- 导航-->
-        <div class="mod mod-topnav">
-            <ul class="shop-nav">
-                <li class="current"><a href="{:U('home/default/index')}" title="首页">首页</a></li>
-                <li ><a href="{:U('home/default/show_introduce')}" title="企业介绍">企业介绍</a></li>
-                <li ><a href="{:U('home/default/contact_us')}" title="联系我们">联系我们</a></li>
-            </ul>
-        </div>
-        <!--导航结束-->
-        <!-- 图片轮播-->
-        <div class="mod-theme">
-            <div class="hotdoing-img">
-                <!--加载图片层开始-->
-                <ol class="hotdoing-photo">
-                    <li>
-                        <img src="http://static.gcimg.net/i/201510/F5MtXjs8Zb.jpg" alt="浙江何仕汽车工具有限公司">
-                    </li>
-                </ol>
-                <!--加载图片层结束-->
-                <!--按钮层开始-->
-                <div class="hotdoing-button"></div>
-                <!--按钮层结束-->
-            </div>
-        </div>
-        <!--图片轮播结束--></div>
-    <!--商铺头部及导航结束-->
-    <div id="content">
-        <!--左边主题板块-->
-        <div class="grid-sub fl">
-            
-            <!--企业介绍-->
-            <div class="mod mod-prointro">
-                <div class="m-body">
-                    <div class="m-header">
-                        <h3>企业介绍</h3>
-                    </div>
-                    <div class="m-content">
-                        <div class="prointro-list">
-                            <ul>
-                                <li><a href="/about/">企业简介</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--企业介绍结束-->
-            <!--产品分类-->
-            <div class="mod mod-proclass">
-                <div class="m-body">
-                    <div class="m-header">
-                        <h3>产品分组</h3>
-                    </div>
-                    <div class="m-content">
-                        <div class="proclass-list">
-                            <ul>
-                                <foreach name="group" item="group_id">
-                                     <li class="expand">
-                                    <div class="side-sort-parent">
-                                        <a href="{:U('home/default/show_group')}?group_id={$group_id.group_id}" title="">{$group_id.group_name}</a>
-                                    </div>
-                                </li>
-                                </foreach>
 
-
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!--产品分类结束-->
-
-            <!--左边相册-->
-            <div class="mod mod-propicl">
-                <div class="m-body">
-                    <div class="m-header">
-                        <h3>企业相册</h3>
-                    </div>
-                    <div class="m-content">
-                        <div class="no-content"><p>暂无企业相册</p></div>
-
-                    </div>
-                </div>
-            </div>
-            <!--左边相册结束-->
-            <!--友情链接-->
-
-            <!--友情链接结束-->
-        </div>
-        <!--左边主题板块结束-->
-        <!-- 右面主题板块-->
-        <div class="main-wrap fr">
-            <!--公司介绍-->
-            <div class="mod mod-prointro">
-                <div class="m-body">
-                    <div class="m-header"><h3 title="公司介绍">公司介绍</h3></div>
-                    <div class="m-content">
-                        <div class="com-intro clf">
-                            <div class="info-word">
-                                <p class="para-one">
-厦门睿智达汽车用品是一家专业从事汽车高清行车记录仪、胎压监测系统的生产和销售，汽车车载工具以及其他汽车用品销售为主营的公司。<br>
-  <div style="text-indent:2em"><p>公司主营的睿智达高清行车记录仪、胎压监测系统，采用国内领先技术和优质原材料生产，产品时尚美观大气，质量稳定耐用，价格贴近市场，成为众多车友、汽车销售商、汽车保险公司、汽车美容机构的安心之选。<br></p>
-<p>开车在路上，安全无小事！公司一直以来致力于为车友、经销商提供质量稳定耐用、价格经济实惠的行车记录仪、胎压监测系统等汽车用品，为广大车友的安全驾驶提供技术保障和支持，乐享美好生活！</p>
-
-</div>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--公司介绍结束-->
-
-            <!--最新产品-->
-            <div class="mod mod-starpro">
-                <div class="m-body">
-                    <div class="m-header"><h3 title="最新产品">最新产品</h3></div>
-                    <div class="m-content">
-                        <div class="star-region">
-                            <ul class="offer-pro">
-                                <foreach name="product_info" item="vo">
-                                <li>
-                                    <div class="pro-img1">
-                                        <a href="{:U('Home/default/show_product')}?product_id={$vo.product_id}" target="_blank">
-
-                                            <img src="/Uploads/product/{$vo.product_id}/{$vo.pic_name}" alt="供应羊毛球、海棉球"></a>
-                                    </div>
-                                    <div class="pro-titles1">
-                                        <a data-exposure="6579,167393,6051856" href="{:U('Home/default/show_product')}?product_id={$vo.product_id}" target="_blank">{$vo.title}</a>
-                                    </div>
-                                </li>
-                                </foreach>
-
-
-
-
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--最新产品结束-->
-            <!--企业新闻-->
-            <div class="mod mod-pronews">
-                <div class="m-body">
-                    <div class="m-header"><h3 title="企业新闻">企业新闻</h3></div>
-                    <div class="m-content">
-                        <div class="no-content"><p>暂无企业新闻</p></div>
-                    </div>
-                </div>
-            </div>
-            <!--企业新闻结束-->
-
-            <!--联系方式-->
-            <div class="mod mod-contact">
-                <div class="m-body">
-                    <div class="m-header"><h3 title="联系方式">联系方式</h3></div>
-                    <div class="m-content">
-                        <div class="contact-way">
-                            <p><strong>厦门睿智达汽车用品</strong></p>
-                            <p>
-                                <small>
-                                    <span>联系人：</span>蓝国昌&nbsp;						</small>
-                            </p>
-                            <p><small><span>电话：</span>13696963187</small></p>
-                            
-                            <p>
-                                <small><span>地址：</span>
-                                    厦门市湖里区枋湖西二路1-3号四楼													</small>
-                                <a href="{:U('home/default/contact_us')}" class="lookmap" rel="nofollow"></a>
-                            </p>
-                            <!--<p>-->
-                                <!--<small>-->
-                                    <!--<span>网站：</span>-->
-                                    <!--<a href="#" target="_blank" title="厦门睿智达有限公司" rel="nofollow">-->
-                                       <!--#								</a>-->
-                                <!--</small>-->
-                            <!--</p>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--联系方式结束-->
-        </div>
-        <!-- 右面主题板块结束-->
     </div>
 
-    <!--商铺底部-->
-    <div id="footer">
-        <div class="shop-footerb">
-            <div class="shop-footer">
-                <!--关于我们-->
-                <div class="foot-aboutus fl">
-                    <h4 class="footer-contact1">关于我们</h4>
-                    <div class="ft-abus">
-                        <ul>
-                            <li>
-                                <a href="#"  target="_blank">企业简介</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-                <!-- 主营产品-->
-                <div class="foot-product fl">
-                    <h4 class="footer-contact2">主营产品</h4>
-                    <div class="ft-product">
-                        <p>
-                           高清行车记录仪、胎压监测系统、汽车用品等</p>
-                    </div>
-                </div>
-                <!--联系我们-->
-                <div class="foot-contact fl">
-                    <h4 class="footer-contact3">联系我们</h4>
-                    <div class="ft-contactus">
-                        <p>厦门睿智达汽车用品</p>
-                        <p>地址：厦门市湖里区枋湖西二路1-3号四楼</p>
-                        <p>电话：13696963187</p>
-                    </div>
-                </div>
-                <!--技术支持-->
-                <div class="foot-support fl">
-                    <div class="ft-techsupport">
-                        <p class="clf">
-                            <img src="http://static.gcimg.net/i/201510/aagvJEFgZv.gif" alt="世界工厂网"/>
-                            <span>技术支持：<a href="#" target="_blank">LEROLIN</a></span>
-                            <span class="sup-buttom">Powered by lerolin</span>
-                        </p>
-                        <p class="record">
-                            
-                        </p>
-                        <p class="f-stat"></p>
-                        <div style="display:none;"></div>
-                        <div style="display:none;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--商铺底部结束-->
-</div><!--//id="page-wrapper"-->
-
-
-<!-- 在线客服 -->
-<script>
-    var data ={"user":[{"contact":"蓝国昌","qq":"2096994359","sex":1}],"message":"\u6b22\u8fce\u6765\u5230\u6211\u4eec\u7f51\u7ad9! ","isSelf":0};
+<script type="text/javascript">
+    $('#myFocus').myFocus({
+        pattern:'mF_tbhuabao',//风格应用的名称
+        time:3,//切换时间间隔(秒)
+        trigger:'click',//触发切换模式:'click'(点击)/'mouseover'(悬停)
+        width:1200,//设置图片区域宽度(像素)
+        height:500,//设置图片区域高度(像素)
+        txtHeight:'0'//文字层高度设置(像素),'default'为默认高度，0为隐藏
+    });
 </script>
 
 
-<script id="atmjsnode" data-base="//static.gcimg.net/assets" type="text/javascript" src="//static.gcimg.net/assets/core/global/1.0.0/pkg/global_d5d288f.js"  data-config='{"async":{"alias":{"sys/shop/1.0.0:js/rule":"/sys/shop/1.0.0/js/rule_92ba03b.js","verify:main":"/core/verify/1.0.0/exports/main_6b0db03.js"},"deps":{"popup:main":["popup:css/popup.css"],"sys/common/1.0.0:usertop":["sys/common/1.0.0:usertop.css"],"sys/shop/1.0.0:main":["sys/common/1.0.0:usertop.css","sys/shop/1.0.0:css/style.css"]},"exists":{"popup:css/popup.css":1,"sys/common/1.0.0:usertop.css":1,"sys/shop/1.0.0:css/style.css":1}}}' ></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/cookie/1.0.2/exports/main_88e266d.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/sys/common/1.0.0/config_d0ec3b8.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/sys/common/1.0.0/usertop_50c5ce1.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/qrcode2/1.0.0/exports/main_5c60463.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/search-global/1.0.0/exports/main_a38840a.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/sys/shop/1.0.0/js/chat_7f9ffde.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/popup/1.0.0/exports/main_8c7a6d6.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/core/slider/1.1.1/exports/main_aac6302.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/lib/jquery/1.11.3/exports/main_a3a5aa9.js"></script>
-<script type="text/javascript" src="//static.gcimg.net/assets/sys/shop/1.0.0/exports/main_86dbd60.js"></script>
-<script type="text/javascript">
 
-    atmjs.use('sys/shop/1.0.0:main')
+    <div class="sypro">
 
-</script><div style="display:none;">
-    <script language="javascript" type="text/javascript" src="http://js.users.51.la/2424689.js"></script>
-    <noscript><a href="http://www.51.la/?2424689" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/2424689.asp" style="border:none" /></a></noscript>
-</div></body>
-</html>
+
+        <foreach name="product_info" item="val">
+
+            <div class="sypro_a" onmouseover="this.className='sypro_aa'" onmouseout="this.className='sypro_a'">
+                <div class="pronr">
+                    <div><a href="{:U('show_product_detail')}?product_id={$val.product_id}"><img src="/Uploads/product/{$val.product_id}/{$val.pic_name}" width="270" height="220" /></a></div>
+                    <p> <a href="pro.aspx">{$val.title}</a> </p>
+
+
+                </div>
+            </div>
+
+
+        </foreach>
+
+
+        <div style=" clear:both;"></div>
+    </div>
+
+
+
+<script type="text/javascript" src="http://www.highdart.com/js/pattern/mF_tbhuabao.js"></script>
+
+<include file="footer"/>
+
+
 
 
 

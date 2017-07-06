@@ -1,0 +1,70 @@
+
+<include file="header"/>
+
+<div class="nrong">
+
+    <div class="nrong_1">
+        <div style="margin-bottom:3px;"></div>
+
+        <div class="ndh">
+
+            <ul>
+
+                <li><a title="公司概况"  href="#" id="141"><p>  </p></a></li>
+
+            </ul>
+
+        </div>
+
+
+
+    </div>
+    <div class="nong_2"></div>
+
+
+
+    <div class="nrong_3">
+
+        <div class="dq">
+
+            <p class="dq_l">
+
+                经营理念
+
+
+
+            </p>
+
+
+
+            <div style=" clear:both;"></div>
+
+        </div>
+
+
+        <foreach name="news" item="val">
+
+            <div class="news_nr">
+                <div class="news_l"><img src="/Uploads/product/{$val.product_id}/{$val.pic_name}" width="172" height="157" /></div>
+                <div class="news_r">
+                    <div class="news_bt"> <a href="{:U('show_news_detail')}?news_id={$val.product_id}"> {$val.title} </a> </div>
+                    <p style=" color:#777;"> {$val.content} </p>
+                    <div class="xiangx"> <div class="xiang_l"><a href="{:U('show_news_detail')}?news_id={$val.product_id}">查看更多</a></div> <div class="xiang_r"> </div>
+                        <div style=" clear:both;"></div>
+                    </div>
+                </div>
+            </div>
+
+
+        </foreach>
+
+
+    </div>
+
+</div>
+
+
+<include file="footer"/>
+
+</body>
+</html>

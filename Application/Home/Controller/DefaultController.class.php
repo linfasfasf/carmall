@@ -13,11 +13,97 @@ class DefaultController extends Controller {
         $this->assign('product_info',$result);
 
         $group_model = M('group_info');
-        $group = $group_model->select();        
+        $group = $group_model->select();
+
+
+        $groupMod = M('group_info');
+        $groupInfo= $groupMod->where("group_name = '新闻'")->select();
+        $groupId  = $groupInfo[0]['group_id'];
+        $productInfo = M('product_info');
+        $query    = "select a.product_id , a.title, b.pic_name from product_info a, pic_info b where a.product_id = b.product_id and  a.group_id={$groupId}";
+        $result   = $productInfo->query($query);
+
+        $this->assign('news', $result);
         $this->assign('group',$group);
         $this->display();
         
     }
+
+    public function show_introduce(){
+        $group_model = M('group_info');
+        $group = $group_model->select();
+        $this->assign('group',$group);
+        $this->display();
+    }
+
+
+
+    public function show_news()
+    {
+        $groupMod = M('group_info');
+        $groupInfo= $groupMod->where("group_name = '新闻'")->select();
+        $groupId  = $groupInfo[0]['group_id'];
+        $productInfo = M('product_info');
+        $query    = "select a.product_id , a.title, b.pic_name from product_info a, pic_info b where a.product_id = b.product_id and  a.group_id={$groupId}";
+        $result   = $productInfo->query($query);
+
+        $this->assign('news', $result);
+        $this->display();
+    }
+
+    public function show_news_detail()
+    {
+        $productId = I('news_id', 0);
+        $productInfo = M('product_info');
+        $query = "select a.product_id , a.title, a.content, b.pic_name from product_info a, pic_info b where a.product_id = b.product_id AND a.product_id={$productId}";
+        $result = $productInfo->query($query);
+        $this->assign('news', $result[0]);
+        $this->display();
+    }
+
+    public function show_product(){
+        $product_info = M('product_info');
+        $query = 'select a.product_id , a.title, b.pic_name from product_info a, pic_info b where a.product_id = b.product_id and  b.default =1 AND  a.group_id=1';
+        $result = $product_info->query($query);
+        $this->assign('product_info',$result);
+        $this->display();
+    }
+
+    public function show_product_detail()
+    {
+        $productId = I('product_id', 0);
+        $productInfo = M('product_info');
+        $query = "select a.product_id , a.title, a.content, b.pic_name from product_info a, pic_info b where a.product_id = b.product_id AND a.product_id={$productId}";
+        $result = $productInfo->query($query);
+        $this->assign('product_info', $result[0]);
+        $this->display();
+    }
+
+
+    public function show_promotion()
+    {
+        $this->display();
+    }
+
+    public function show_partner()
+    {
+        $groupMod = M('group_info');
+        $groupInfo= $groupMod->where("group_name = '合作伙伴'")->select();
+        $groupId  = $groupInfo[0]['group_id'];
+        $productInfo = M('product_info');
+        $query    = "select a.product_id , a.title, b.pic_name from product_info a, pic_info b where a.product_id = b.product_id and  a.group_id={$groupId}";
+        $result   = $productInfo->query($query);
+
+        $this->assign('news', $result);
+        $this->display();
+    }
+
+    public function show_recruit()
+    {
+        $this->display();
+    }
+
+
 
     public function show_group(){
         $group_id = I('group_id');
@@ -34,21 +120,7 @@ class DefaultController extends Controller {
         
     }
 
-    public function show_product(){
-        $product_id = I('product_id');
-        $product_info = M('product_info');
-        $group_model = M('group_info');
-        $group = $group_model->select();
-        
-        $result = $product_info->where('product_id=%d',$product_id)->select();
-        $pic_info_model = M('pic_info');
-        $pic_info = $pic_info_model->where('product_id =%d',$product_id)->select();
-        $this->assign('pic_info',$pic_info);
-        $this->assign('group',$group);
-        $this->assign('product_info',$result[0]);
-        // var_dump($result);die();
-        $this->display();
-    }
+
 
     public function login(){
         I('get.p');
@@ -56,17 +128,9 @@ class DefaultController extends Controller {
         $this->display();
     }
 
-    public function show_introduce(){
-        $group_model = M('group_info');
-        $group = $group_model->select();
-        $this->assign('group',$group);
-        $this->display();
-    }
+
 
     public function contact_us(){
-        $group_model = M('group_info');
-        $group = $group_model->select();
-        $this->assign('group',$group);
         $this->display();
     }
 
@@ -160,7 +224,9 @@ class DefaultController extends Controller {
         echo 'yes';
     }
 
-    
+    public function sendMail(){
+        send_mail('254430304@qq.com', 'test', '这是测试邮件');
+    }
 
 
 
