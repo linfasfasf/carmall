@@ -63,9 +63,19 @@ class DefaultController extends Controller {
 
     public function show_product(){
         $product_info = M('product_info');
-        $query = 'select a.product_id , a.title, b.pic_name from product_info a, pic_info b where a.product_id = b.product_id and  b.default =1 AND  a.group_id=1';
+        $groupId = I('group_id');
+        $query = 'select a.product_id , a.title, b.pic_name from product_info a, pic_info b where a.product_id = b.product_id and  b.default =1 ';
+        if(!empty($groupId)&& is_numeric($groupId)){
+            $query .= "and a.group_id=".$groupId;
+        }
         $result = $product_info->query($query);
         $this->assign('product_info',$result);
+
+        $group = M('group_info');
+        $query = "SELECT * FROM group_info";
+        $result = $group->query($query);
+        $this->assign('group_info', $result);
+
         $this->display();
     }
 

@@ -6,11 +6,20 @@
     <div class="nrong_1">
         <div style="margin-bottom:3px;"></div>
 
-        <div class="ndh">
+        <div class="ndh"style="color: #0e90d2;">
 
             <ul>
 
-                <li><a title="公司概况"  href="#" id="141"><p>  </p></a></li>
+                <li><a title="公司概况"  href="#" id="141" >
+                    <foreach name="group_info" item="val">
+
+                    <p >
+                        <a href="{:U('show_product')}?group_id={$val.group_id}" style="color: #0e0e0e;">{$val.group_name}</a>
+
+                    </p>
+                        </foreach>
+                    </a>
+                </li>
 
             </ul>
 
@@ -28,12 +37,7 @@
         <div class="dq">
 
             <p class="dq_l">
-
-
-
-
             </p>
-
 
 
             <div style=" clear:both;"></div>
