@@ -8,17 +8,16 @@
 
         <div class="ndh"style="color: #0e90d2;">
 
-            <ul>
+            <ul style="margin-top: 120px;">
 
-                <li><a title="公司概况"  href="#" id="141" >
+                <li style="width: 100%;">
                     <foreach name="group_info" item="val">
 
-                    <p >
+                    <p style="padding-left: 0; line-height: 40px; height: 40px; white-space: nowrap;">
                         <a href="{:U('show_product')}?group_id={$val.group_id}" style="color: #0e0e0e;">{$val.group_name}</a>
 
                     </p>
                         </foreach>
-                    </a>
                 </li>
 
             </ul>
@@ -50,7 +49,7 @@
             <div class="sypro_a" onmouseover="this.className='sypro_aa'" onmouseout="this.className='sypro_a'">
                 <div class="pronr">
                     <div><a href="{:U('show_product_detail')}?product_id={$val.product_id}"><img src="/Uploads/product/{$val.product_id}/{$val.pic_name}" width="270" height="220" /></a></div>
-                    <p> <a href="pro.aspx">{$val.title}</a> </p>
+                    <p > <a href="pro.aspx">{$val.title}</a> </p>
 
 
                 </div>
