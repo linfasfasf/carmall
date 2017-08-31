@@ -26,6 +26,14 @@ class UserController extends AdminController{
 
     }
 
+    public function del_group()
+    {
+        $groupModel = M('group_info');
+        $id = I('id', 0);
+        $groupModel->where("id=%d", array($id))->delete();
+        $this->success('删除成功');
+    }
+
     public function upload(){
         $num = I('get.file_num');
         $num = is_numeric($num)?$num:4;
